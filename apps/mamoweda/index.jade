@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+  h1 MaMoWeDa
+  div(style="display:flex;flex-direction:row;overflow:auto")
+    div(style="width:25%; min-width:400px;")
+      h2 Master
+      form(action="/apps/mamoweda/tasks" method="post")
+        input(type="text" name="title")
+        input(type="submit" value="Add")
+      each task in tasks
+        if task.category=='master'
+          div(class="task" )
+            h3(style="display: flex; flex-direction: row") #{task.title} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/delete") #[i(class="gg-trash")]]
+            div
+              p(style="display: flex; flex-direction: row") #{task.assignedToUser0? user0: user1} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/assignedTo?val=#{!task.assignedToUser0}") #[i(class="gg-arrows-exchange")]] 
+            
+            div(style="display:flex;flex-direction:row; margin-top:10px;")
+              each category in ['master','month','week','day']
+                a(href="/apps/mamoweda/tasks/#{task.id}/category?val=#{category}" class="#{task.category==category?'category-selected': 'category-unselected' }") #{category.substr(0,2)}
+          
+    div(style="width:25%; min-width:400px;")
+      h2 Month 
+      each task in tasks
+        if task.category=='month'
+          div(class="task" )
+            h3(style="display: flex; flex-direction: row") #{task.title} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/delete") #[i(class="gg-trash")]]
+            div
+              p(style="display: flex; flex-direction: row") #{task.assignedToUser0? user0: user1} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/assignedTo?val=#{!task.assignedToUser0}") #[i(class="gg-arrows-exchange")]] 
+            
+            div(style="display:flex;flex-direction:row; margin-top:10px;")
+              each category in ['master','month','week','day']
+                a(href="/apps/mamoweda/tasks/#{task.id}/category?val=#{category}" class="#{task.category==category?'category-selected': 'category-unselected' }") #{category.substr(0,2)}
+
+    div(style="width:25%; min-width:400px;")
+      h2 Week
+      each task in tasks
+        if task.category=='week'
+          div(class="task" )
+            h3(style="display: flex; flex-direction: row") #{task.title} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/delete") #[i(class="gg-trash")]]
+            div
+              p(style="display: flex; flex-direction: row") #{task.assignedToUser0? user0: user1} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/assignedTo?val=#{!task.assignedToUser0}") #[i(class="gg-arrows-exchange")]] 
+            
+            div(style="display:flex;flex-direction:row; margin-top:10px;")
+              each category in ['master','month','week','day']
+                a(href="/apps/mamoweda/tasks/#{task.id}/category?val=#{category}" class="#{task.category==category?'category-selected': 'category-unselected' }") #{category.substr(0,2)}
+
+    div(style="width:25%; min-width:400px;")
+      h2 Day
+      each task in tasks
+        if task.category=='day'
+          div(class="task" )
+            h3(style="display: flex; flex-direction: row") #{task.title} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/delete") #[i(class="gg-trash")]]
+
+            div
+              p(style="display: flex; flex-direction: row") #{task.assignedToUser0? user0: user1} &nbsp; #[a(href="/apps/mamoweda/tasks/#{task.id}/assignedTo?val=#{!task.assignedToUser0}") #[i(class="gg-arrows-exchange")]] 
+            
+            div(style="display:flex;flex-direction:row; margin-top:10px;")
+              each category in ['master','month','week','day']
+                a(href="/apps/mamoweda/tasks/#{task.id}/category?val=#{category}" class="#{task.category==category?'category-selected': 'category-unselected' }") #{category.substr(0,2)}
